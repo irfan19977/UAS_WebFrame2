@@ -3,6 +3,9 @@
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\UjianController;
+use App\Models\Datamahasiswa;
+use App\Models\Detail;
+use App\Models\Krs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +21,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('mahasiswa');
+});
+
+Route::get('/viewkrs', function () {
+    return view('Viewkrs', [
+    "KodeMatkul" => "Post",
+    "posts" => Krs::all()
+    ]);
+});
+
+Route::get('/datamahasiswa', function () {
+    return view('DataMahasiswa', [
+    "NIM" => "Post",
+    "posts" => Datamahasiswa::all()
+    ]);
+});
+
+Route::get('/datamahasiswa/{NIM}', function ($nim) {
+
+    return view('DetailDataMahasiswa', [
+    "title" => "Single Post",
+    "post" =>Datamahasiswa::getBySlack($nim)
+    ]);
 });
 
 Route::prefix('mahasiswa')->group(function () {
