@@ -69,13 +69,5 @@ class Krs
         return self::$krs_posts;
     }
     
-    public static function getBySlack($slack)
-    {
-        foreach (self::$krs_posts as $post) {
-            if ($post['KodeMatkul'] === $slack) {
-                return $post;
-            }
-        }
-        return null; // Return null jika tidak ditemukan
-    }
+    
 }

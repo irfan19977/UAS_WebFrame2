@@ -12,11 +12,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($posts as $post)
+            @foreach($dataMahasiswa as $mahasiswa)
                 <tr>
-                    <td><a href="/datamahasiswa/{{  $post['NIM'] }}"> {{ $post['NIM'] }}</a></td>
-                    <td>{{ $post['Nama'] }}</td>
-                    <td>{{ $post['Jurusan'] }}</td>
+                    <td><a href="{{ route('mahasiswa.krs', $mahasiswa['NIM']) }}">{{ $mahasiswa['NIM'] }}</a></td>
+                    <td>{{ $mahasiswa['Nama'] }}</td>
+                    <td>{{ $mahasiswa['Jurusan'] }}</td>
                 </tr>
             @endforeach
         </tbody>

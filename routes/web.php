@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DatamahasiswaController;
+use App\Http\Controllers\KRSController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\UjianController;
@@ -23,27 +25,10 @@ Route::get('/', function () {
     return view('mahasiswa');
 });
 
-Route::get('/viewkrs', function () {
-    return view('Viewkrs', [
-    "KodeMatkul" => "Post",
-    "posts" => Krs::all()
-    ]);
-});
+Route::get('/viewkrs', [KRSController::class, 'index']);
 
-Route::get('/datamahasiswa', function () {
-    return view('DataMahasiswa', [
-    "NIM" => "Post",
-    "posts" => Datamahasiswa::all()
-    ]);
-});
-
-Route::get('/datamahasiswa/{NIM}', function ($nim) {
-
-    return view('DetailDataMahasiswa', [
-    "title" => "Single Post",
-    "post" =>Datamahasiswa::getBySlack($nim)
-    ]);
-});
+Route::get('/datamahasiswa', [DataMahasiswaController::class, 'index'])->name('mahasiswa.index');
+Route::get('/datamahasiswa/{nim}/krs', [DataMahasiswaController::class, 'showKrs'])->name('mahasiswa.krs');
 
 Route::prefix('mahasiswa')->group(function () {
     // Route untuk halaman admin/users tanpa menggunakan controller
