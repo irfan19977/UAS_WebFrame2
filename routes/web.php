@@ -30,18 +30,13 @@ Route::get('/viewkrs', [KRSController::class, 'index']);
 Route::get('/datamahasiswa', [DataMahasiswaController::class, 'index'])->name('mahasiswa.index');
 Route::get('/datamahasiswa/{nim}/krs', [DataMahasiswaController::class, 'showKrs'])->name('mahasiswa.krs');
 
-Route::prefix('mahasiswa')->group(function () {
-    // Route untuk halaman admin/users tanpa menggunakan controller
-    Route::get('/pendaftaran', function () {
-        return "Ini adalah halaman pendaftaran"; // Sesuaikan dengan respons atau tampilan yang diinginkan
-    })->name('home');
-    Route::get('/ujian', function () {
-        return "Ini adalah halaman ujian"; // Sesuaikan dengan respons atau tampilan yang diinginkan
-    })->name('home');
-    Route::get('/nilai', function () {
-        return "Ini adalah halaman nilai"; // Sesuaikan dengan respons atau tampilan yang diinginkan
-    })->name('home');
-    // Tambahkan rute lainnya yang mungkin Anda butuhkan di sini
+Route::prefix('dosen')->group(function () {     
+    Route::get('/profile', function () {
+        return view('v_profile'); 
+    })->name('profile');
+    Route::get('/data_pengampu', function () {
+        return view('v_ampu'); 
+    })->name('pengampu');
 });
 
 // Route::prefix('mahasiswa')->group(function () {
