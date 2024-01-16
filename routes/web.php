@@ -4,6 +4,7 @@ use App\Http\Controllers\DatamahasiswaController;
 use App\Http\Controllers\KRSController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UjianController;
 use App\Models\Datamahasiswa;
 use App\Models\Detail;
@@ -21,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('mahasiswa');
-});
+Route::get('/', [ProfileController::class, 'index']);
 
 Route::get('/viewkrs', [KRSController::class, 'index']);
 
